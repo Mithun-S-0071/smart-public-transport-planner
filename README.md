@@ -8,8 +8,6 @@
 
 **Author:** Mithun S
 
-**College / Course:** Sree Sakthi Engineering College / IT
----
 
 ## Key features
 
