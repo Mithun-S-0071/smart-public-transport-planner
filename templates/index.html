@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Public Transport Planner</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    /* Autocomplete list */
+    .autocomplete-list {
+      position: absolute;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 100%;
+      max-height: 160px;
+      overflow-y: auto;
+      display: none;
+      z-index: 9999;
+    }
+    .autocomplete-item {
+      padding: 8px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+    .autocomplete-item:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Landing -->
+  <section id="landing">
+    <div class="landing-card glass">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" class="logo" alt="App Logo" />
+
+      <h1>Smart Public Transport Planner</h1>
+      <p>Live Traffic • Train Tracking • Bus Movement Simulation</p>
+
+      <div class="button-row">
+        <button id="viewTrafficBtn" class="main-btn">Open Map</button>
+        <button id="aboutBtn" class="ghost-btn">About</button>
+      </div>
+
+      <div class="toggle-wrap">
+        <label><input type="checkbox" id="themeSwitch" /> Dark Mode</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map UI -->
+  <section id="mapSection" class="hidden">
+    <div id="map"></div>
+    <button id="backBtn" class="back-btn">← Back</button>
+
+    <!-- Floating Train/Bus UI -->
+    <div id="controlPanel" class="glass">
+      <h3>Track Vehicles</h3>
+
+      <div class="input-row">
+        <input id="trainInput" type="text" placeholder="Train Number" />
+        <button id="trainTrackBtn">Track</button>
+      </div>
+
+      <div class="input-row">
+        <input id="busInput" type="text" placeholder="Bus Number Plate" />
+        <button id="busTrackBtn">Track</button>
+      </div>
+    </div>
+
+    <!-- 🔥 Route Planner Panel -->
+    <div id="routePanel" class="glass" style="
+      position: absolute;
+      top: 280px;
+      left: 16px;
+      z-index: 1000;
+      padding: 12px;
+      width: 260px;
+      border-radius: 12px;">
+      
+      <h3 style="margin: 0 0 10px 0;">Route Planner</h3>
+
+      <!-- From -->
+      <div class="input-row" style="margin-bottom: 8px;">
+        <input id="routeFrom" type="text" placeholder="From location" autocomplete="off">
+        <div id="fromSuggestions" class="autocomplete-list"></div>
+      </div>
+
+      <!-- To -->
+      <div class="input-row" style="margin-bottom: 8px;">
+        <input id="routeTo" type="text" placeholder="To destination" autocomplete="off">
+        <div id="toSuggestions" class="autocomplete-list"></div>
+      </div>
+
+      <button id="findRouteBtn" class="main-btn" style="width:100%; margin-bottom:6px;">
+        Find Route
+      </button>
+
+      <button id="clearRouteBtn" class="ghost-btn" style="width:100%;">
+        Clear Route
+      </button>
+
+      <div id="routeInfo" style="margin-top:10px; font-size:14px;"></div>
+    </div>
+  </section>
+
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal hidden">
+    <div class="modal-box glass">
+      <span id="closeAbout" class="close">×</span>
+      <h2>About</h2>
+      <p>This project visualizes traffic, bus movement, and train tracking using public APIs and local fallback data.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

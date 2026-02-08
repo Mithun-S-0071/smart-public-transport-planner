@@ -1,0 +1,239 @@
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* === Theme Variables === */
+:root {
+  --bg: #e9edf5;
+  --text: #0e1116;
+  --card: rgba(255, 255, 255, 0.45);
+  --accent: #0078ff;
+  --blur: blur(14px);
+  --shadow: rgba(0, 0, 0, 0.15);
+}
+
+body.dark {
+  --bg: #0b111b;
+  --text: #eaf2ff;
+  --card: rgba(26, 34, 48, 0.55);
+  --accent: #4da2ff;
+  --blur: blur(16px);
+  --shadow: rgba(255, 255, 255, 0.06);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* === Glass Card === */
+.glass {
+  background: var(--card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: 0 8px 30px var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* === Landing Screen === */
+#landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing-card {
+  padding: 2.7rem 3.4rem;
+  border-radius: 22px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+}
+.landing-card,
+#controlPanel,
+.modal-content {
+  background: var(--card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px var(--shadow);
+}
+
+.logo {
+  width: 90px;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+/* === Buttons === */
+button {
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: none;
+  transition: 0.25s ease;
+}
+
+.main-btn {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.4);
+}
+.main-btn:hover {
+  transform: translateY(-2px);
+  background: #0064d1;
+}
+
+.ghost-btn {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+}
+.ghost-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* === Theme Toggle === */
+.toggle-wrap {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* === Map Section === */
+#mapSection {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* === Back Button === */
+.back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--card);
+  padding: 8px 14px;
+  border-radius: 10px;
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(255,255,255,0.4);
+  z-index: 1200;
+  transition: 0.25s;
+}
+.back-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* === Control Panel (Glass UI) === */
+#controlPanel {
+  position: absolute;
+  top: 75px;
+  left: 16px;
+  padding: 1rem;
+  width: 230px;
+  z-index: 1300;
+}
+
+#controlPanel h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: rgba(255,255,255,0.25);
+  color: var(--text);
+}
+
+/* === About Modal === */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,.55);
+  z-index: 2000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-box {
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  background: var(--card);
+  backdrop-filter: var(--blur);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px var(--shadow);
+}
+
+.close {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.close:hover {
+  opacity: 1;
+}
+
+/* === Train / Bus Marker Emoji === */
+.train-icon, .bus-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+}
+
+/* Animated glow for markers */
+.train-icon, .bus-icon {
+  font-size: 26px;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  animation: pulseGlow 1.4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%   { transform: translateY(0); filter: drop-shadow(0 0 3px rgba(0,0,0,0.5)); }
+  50%  { transform: translateY(-1px); filter: drop-shadow(0 0 10px rgba(0,0,0,0.7)); }
+  100% { transform: translateY(0); filter: drop-shadow(0 0 3px rgba(0,0,0,0.5)); }
+}
